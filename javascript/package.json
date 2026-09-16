@@ -1,0 +1,56 @@
+{
+  "name": "@courtiq/sdk",
+  "version": "0.1.0",
+  "description": "SDK oficial para a API do CourtIQ",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./webhooks": {
+      "types": "./dist/webhooks.d.ts",
+      "import": "./dist/webhooks.mjs",
+      "require": "./dist/webhooks.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "courtiq",
+    "api",
+    "juridico",
+    "processos",
+    "tribunal",
+    "sdk"
+  ],
+  "author": "Carlos Alberto Oliveira Jr.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junior089/courtiq-sdk",
+    "directory": "javascript"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^4.1.11"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
