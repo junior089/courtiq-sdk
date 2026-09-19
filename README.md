@@ -1,6 +1,9 @@
 # CourtIQ SDKs
 
 [![CI](https://github.com/junior089/courtiq-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/junior089/courtiq-sdk/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/%40courtiq%2Fsdk.svg)](https://www.npmjs.com/package/@courtiq/sdk)
+[![PyPI](https://img.shields.io/pypi/v/courtiq.svg)](https://pypi.org/project/courtiq/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Official client libraries for the [CourtIQ](https://courtiq.com.br) API — a platform for tracking judicial
 processes across Brazilian courts (TJSP, TJRJ, TJMG, TRF1/3/5, and others).
