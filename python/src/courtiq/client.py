@@ -4,6 +4,7 @@ from typing import Any
 
 import httpx
 
+from ._version import __version__
 from .exceptions import (
     AuthenticationError,
     CourtIQError,
@@ -73,7 +74,7 @@ class CourtIQ:
             headers={
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
-                "User-Agent": "courtiq-python/0.1.0",
+                "User-Agent": f"courtiq-python/{__version__}",
             },
             timeout=httpx.Timeout(timeout),
             transport=transport,
@@ -134,7 +135,7 @@ class AsyncCourtIQ:
             headers={
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
-                "User-Agent": "courtiq-python/0.1.0",
+                "User-Agent": f"courtiq-python/{__version__}",
             },
             timeout=httpx.Timeout(timeout),
             transport=transport,

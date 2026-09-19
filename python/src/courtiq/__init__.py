@@ -1,3 +1,4 @@
+from ._version import __version__
 from .client import CourtIQ
 from .exceptions import (
     AuthenticationError,
@@ -7,7 +8,6 @@ from .exceptions import (
     ValidationError,
 )
 
-__version__ = "0.1.0"
 __all__ = [
     "AuthenticationError",
     "CourtIQ",
@@ -15,4 +15,5 @@ __all__ = [
     "NotFoundError",
     "RateLimitError",
     "ValidationError",
+    "__version__",
 ]
