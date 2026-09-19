@@ -50,6 +50,90 @@ processo = client.processos.buscar(numero="0001234-56.2024.8.26.0100")
 
 See each package's own README for full usage, configuration, error handling, and webhook verification.
 
+## Examples
+
+### List with automatic pagination
+
+**TypeScript**
+
+```typescript
+for await (const processo of client.processos.iterar({ tribunal: "TJSP" })) {
+  console.log(processo.numero, processo.classe);
+}
+```
+
+**Python**
+
+```python
+for processo in client.processos.iterar(tribunal="TJSP"):
+    print(processo["numero"])
+```
+
+### Create a monitor and handle errors
+
+**TypeScript**
+
+```typescript
+import { CourtIQError, RateLimitError } from "@courtiq/sdk";
+
+try {
+  const monitor = await client.monitoramentos.criar({
+    numeroProcesso: "0001234-56.2024.8.26.0100",
+    webhookUrl: "https://your-server.com/webhook",
+    eventos: ["movimentacao"],
+  });
+} catch (error) {
+  if (error instanceof RateLimitError) {
+    console.error(`Retry after ${error.retryAfter}s`);
+  } else if (error instanceof CourtIQError) {
+    console.error(error.code, error.message);
+  }
+}
+```
+
+**Python**
+
+```python
+from courtiq.exceptions import CourtIQError, RateLimitError
+
+try:
+    monitor = client.monitoramentos.criar(
+        numero_processo="0001234-56.2024.8.26.0100",
+        webhook_url="https://your-server.com/webhook",
+        eventos=["movimentacao"],
+    )
+except RateLimitError as e:
+    print(f"Retry after {e.retry_after}s")
+except CourtIQError as e:
+    print(e.code, e.message)
+```
+
+### Verify an incoming webhook
+
+**TypeScript**
+
+```typescript
+import { verificarAssinatura } from "@courtiq/sdk/webhooks";
+
+const isValid = await verificarAssinatura({
+  payload: rawRequestBody,
+  signature: request.headers["x-courtiq-signature"],
+  secret: "your-webhook-secret",
+});
+```
+
+**Python**
+
+```python
+from courtiq.webhooks import verificar_assinatura
+
+is_valid = verificar_assinatura(
+    payload=request.body,
+    signature=request.headers["X-CourtIQ-Signature"],
+    secret="your-webhook-secret",
+)
+```
+
 ## Development
 
 ```bash
